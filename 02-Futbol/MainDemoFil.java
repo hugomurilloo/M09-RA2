@@ -8,15 +8,15 @@ public class MainDemoFil {
         String[] noms = {"Ronaldo", "Levan", "Bell1", "Arnau", "Aspas", 
                          "Messi", "MBapé", "Piqué", "Vinicius", "Torres", "Ramos"};
         
-        for (int i = 0; i < Futbolista.NUM_JUGADORS; i++) {
-            jugadors[i] = new Futbolista(noms[i]);
+        for (int i = 0; i < Futbol.NUM_JUGADORS; i++) {
+            jugadors[i] = new Futbol(noms[i]);
         }
         
-        for (Futbolista jugador : jugadors) {
+        for (Futbol jugador : jugadors) {
             jugador.start();
         }
         
-        for (Futbolista jugador : jugadors) {
+        for (Futbol jugador : jugadors) {
             try {
                 jugador.join();
             } catch (InterruptedException e) {
@@ -27,7 +27,7 @@ public class MainDemoFil {
         System.out.println("Fi dels xuts ---");
         System.out.println("--- Estadístiques ---");
         
-        for (Futbolista jugador : jugadors) {
+        for (Futbol jugador : jugadors) {
             System.out.println(jugador.getName() + " -> " + jugador.getGols() + " gols");
         }
     }
