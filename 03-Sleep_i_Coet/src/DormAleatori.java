@@ -1,47 +1,41 @@
+import java.util.Random;
+
 public class DormAleatori extends Thread {
-    
-    private final long instantCreacio;
-    private final int NUM_ITERACIONS = 10;
+    private long instantCreacio;
+    private Random rand;
     
     public DormAleatori(String nom) {
         super(nom);
         this.instantCreacio = System.currentTimeMillis();
+        this.rand = new Random();
     }
     
     @Override
     public void run() {
-        java.util.Random rand = new java.util.Random();
-        
-        for (int i = 0; i < NUM_ITERACIONS; i++) {
-            int intervalAleatori = rand.nextInt(1000) + 1;
-            long totalMs = System.currentTimeMillis() - instantCreacio;
+        for (int i = 0; i < 10; i++) {
+            int intervalAleatori = rand.nextInt(1000); 
+            long tempsActual = System.currentTimeMillis();
+            long tempsDesDeCreacio = tempsActual - instantCreacio;
             
-            System.out.println(getName() + " (" + i + ") a dormir " + 
-                              intervalAleatori + "ms total " + totalMs + "ms");
+            System.out.printf("%s(%d) a dormir %4dms total %5dms%n", 
+                              getName(), i, intervalAleatori, tempsDesDeCreacio);
             
             try {
                 Thread.sleep(intervalAleatori);
             } catch (InterruptedException e) {
-                e.printStackTrace();
+                System.out.println(getName() + " interromput!");
+                return;
             }
         }
     }
+    
     public static void main(String[] args) {
-        System.out.println("F1 de main");
-        
         DormAleatori joan = new DormAleatori("Joan");
         DormAleatori pep = new DormAleatori("Pep");
         
         joan.start();
         pep.start();
         
-        try {
-            joan.join();
-            pep.join();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        
-        System.out.println("S'ha acabat el main");
+        System.out.println("-- Fi de main ---");
     }
 }

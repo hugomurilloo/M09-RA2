@@ -1,4 +1,3 @@
-package 02-Futbol;
 
 public class MainDemoFil {
     public static void main(String[] args) {
