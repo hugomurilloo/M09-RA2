@@ -17,8 +17,8 @@ public class Fil extends Thread {
         
         for (int i = 1; i <= maxComptador; i++) {
             System.out.println(nom + " " + i);
-                        for (int j = 0; j < 1000; j++) {
-            }   
+                for (int j = 0; j < 1000; j++) {
+            }
             if (delay > 0) {
                 try {
                     Thread.sleep(delay);
